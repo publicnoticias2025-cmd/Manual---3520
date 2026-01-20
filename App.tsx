@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const App: React.FC = () => {
   const [logoUrl, setLogoUrl] = useState('https://lh3.googleusercontent.com/d/1p0Cp9i1nKWc3Pil8GaYrcQJkuFfqZPPy');
-  const [photoUrl, setPhotoUrl] = useState('https://lh3.googleusercontent.com/d/1w7HIwm3Y577ZdiiNj2Mv_La-9Yo5pso8');
+  const [photoUrl, setPhotoUrl] = useState('https://lh3.googleusercontent.com/d/1fidSZNWFsVemqhu1ny1T-3rr269CkTX-');
 
   const personalityChartRef = useRef<HTMLCanvasElement>(null);
 
@@ -64,7 +64,7 @@ const App: React.FC = () => {
           </div>
           <p className="text-brand-red font-bold tracking-[0.3em] uppercase mb-4 text-xs">Manual de Marca Estratégico</p>
           <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 text-brand-blue">Dr. Antônio Falcão</h1>
-          <p className="text-xl md:text-2xl text-slate-400 font-light max-w-2xl italic leading-relaxed">
+          <p className="text-xl md:text-2xl text-slate-400 font-light max-w-2xl italic leading-relaxed px-4">
             "Uma marca técnica e humana que pulsa longevidade."
           </p>
         </div>
@@ -121,7 +121,7 @@ const App: React.FC = () => {
 
         {/* Section 2: Visuals */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="bg-white p-10 rounded-[2rem] shadow-xl border border-gray-100">
+          <div className="bg-white p-10 rounded-[2rem] shadow-xl border border-gray-100 h-fit lg:sticky lg:top-8">
             <h2 className="font-serif text-2xl font-bold text-brand-blue mb-8">2. Cores & Tipos</h2>
             <div className="space-y-6">
               {[
@@ -150,59 +150,112 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-2 bg-white p-10 rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden">
-            <h2 className="font-serif text-2xl font-bold text-brand-blue mb-8">Aplicações Reais</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[400px]"> {/* Aumentado de 320px para 400px */}
-              <div className="bg-slate-50 rounded-2xl flex flex-col items-center justify-center p-8 group cursor-pointer relative shadow-sm">
-                <img src={logoUrl} className="max-w-[90%] max-h-[180px] object-contain transition group-hover:scale-105" alt="Light logo" />
-                <span className="absolute bottom-4 text-[10px] font-bold uppercase text-slate-300 tracking-widest">Fundo Claro</span>
+          <div className="lg:col-span-2 bg-white p-4 md:p-8 rounded-[2rem] shadow-xl border border-gray-100">
+            <h2 className="font-serif text-3xl font-bold text-brand-blue mb-12 px-4 text-center">Aplicações Reais (Zoo Responsivo)</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Variante 1: Fundo Claro */}
+              <div className="bg-white rounded-3xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-sm min-h-[400px] border border-slate-100 overflow-hidden">
+                <img src={logoUrl} className="w-full h-full max-h-[280px] object-contain transition-transform duration-700 group-hover:scale-110" alt="Light logo" />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                    <span className="text-[10px] font-bold uppercase text-slate-500 tracking-[0.3em] bg-white/95 px-5 py-2 rounded-full shadow-md border border-slate-100 whitespace-nowrap">Fundo Claro</span>
+                </div>
               </div>
-              <div className="bg-brand-blue rounded-2xl flex flex-col items-center justify-center p-8 group cursor-pointer relative shadow-inner">
-                <img src={logoUrl} className="max-w-[90%] max-h-[180px] object-contain brightness-0 invert transition group-hover:scale-105" alt="Dark logo" />
-                <span className="absolute bottom-4 text-[10px] font-bold uppercase text-blue-300 tracking-widest">Fundo Escuro</span>
+              
+              {/* Variante 2: Fundo Escuro */}
+              <div className="bg-brand-blue rounded-3xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-2xl min-h-[400px] overflow-hidden">
+                <img src={logoUrl} className="w-full h-full max-h-[280px] object-contain brightness-0 invert transition-transform duration-700 group-hover:scale-110" alt="Dark logo" />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                    <span className="text-[10px] font-bold uppercase text-blue-200 tracking-[0.3em] bg-brand-blue/90 px-5 py-2 rounded-full shadow-lg border border-blue-900 whitespace-nowrap backdrop-blur-sm">Fundo Escuro</span>
+                </div>
+              </div>
+              
+              {/* Variante 3: Preto e Branco */}
+              <div className="bg-white border border-slate-200 rounded-3xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-sm min-h-[400px] overflow-hidden">
+                <img src={logoUrl} className="w-full h-full max-h-[280px] object-contain grayscale brightness-0 transition-transform duration-700 group-hover:scale-110" alt="B&W logo" />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                    <span className="text-[10px] font-bold uppercase text-slate-600 tracking-[0.3em] bg-white/95 px-5 py-2 rounded-full shadow-md border border-slate-200 whitespace-nowrap">Monocromático</span>
+                </div>
+              </div>
+
+              {/* Variante 4: Fundo Vermelho Vital */}
+              <div className="bg-brand-red rounded-3xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-2xl min-h-[400px] overflow-hidden">
+                <img src={logoUrl} className="w-full h-full max-h-[280px] object-contain brightness-0 invert transition-transform duration-700 group-hover:scale-110" alt="Red background logo" />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                    <span className="text-[10px] font-bold uppercase text-white tracking-[0.3em] bg-black/30 px-5 py-2 rounded-full shadow-lg backdrop-blur-sm whitespace-nowrap">Fundo Vermelho</span>
+                </div>
+              </div>
+
+              {/* Variante 5: Marca d'água */}
+              <div className="bg-slate-50 rounded-3xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-sm min-h-[400px] overflow-hidden">
+                <img src={logoUrl} className="w-full h-full max-h-[280px] object-contain opacity-10 transition-transform duration-700 group-hover:opacity-20 group-hover:scale-110" alt="Watermark" />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                    <span className="text-[10px] font-bold uppercase text-slate-400 tracking-[0.3em] bg-white/70 px-5 py-2 rounded-full shadow-sm whitespace-nowrap">Marca d'água</span>
+                </div>
+              </div>
+
+              {/* Variante 6: Cinza Técnico */}
+              <div className="bg-brand-gray rounded-3xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-xl min-h-[400px] overflow-hidden">
+                <img src={logoUrl} className="w-full h-full max-h-[280px] object-contain brightness-0 invert transition-transform duration-700 group-hover:scale-110" alt="Gray tech logo" />
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                    <span className="text-[10px] font-bold uppercase text-slate-100 tracking-[0.3em] bg-black/20 px-5 py-2 rounded-full shadow-lg whitespace-nowrap">Cinza Técnico</span>
+                </div>
               </div>
             </div>
-            <div className="mt-8 text-xs text-slate-400 italic">
-              * Mantenha sempre um respiro equivalente à altura da letra "D" ao redor da marca.
+            <div className="mt-12 text-xs text-slate-400 font-bold text-center uppercase tracking-[0.3em] border-t border-slate-50 pt-8">
+              Aplicações Técnicas em Formatos Compactos
             </div>
           </div>
         </section>
 
         {/* Section 3: Photo Styling */}
-        <section className="bg-white rounded-[2.5rem] shadow-xl p-10 md:p-16 border border-gray-100">
+        <section className="bg-white rounded-[2.5rem] shadow-xl p-10 md:p-16 border border-gray-100 overflow-hidden">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
                 <h2 className="font-serif text-3xl font-bold text-brand-blue">3. O Rosto da Marca</h2>
                 <p className="text-slate-600 leading-relaxed">
-                  A fotografia deve seguir o estilo <strong>High-Key</strong>: iluminação clara, fundo limpo e tons suaves, transmitindo transparência e autoridade.
+                  A representação visual do Dr. Antônio Falcão deve seguir padrões visuais consistentes, garantindo uniformidade em todos os materiais institucionais e digitais.
                 </p>
-                <div className="p-6 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
-                  <h4 className="text-xs font-bold text-brand-blue uppercase mb-2">Diretriz Visual</h4>
-                  <p className="text-sm italic text-slate-500">"Dr. Antônio deve ser retratado com segurança e empatia, preferencialmente em ambiente clínico impecável."</p>
+                <div className="p-8 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
+                  <h4 className="text-sm font-bold text-brand-blue uppercase mb-3 tracking-widest">Diretriz Visual</h4>
+                  <ul className="text-sm text-slate-500 space-y-3">
+                    <li className="flex items-start gap-2"><span>•</span> <span>Iluminação clara e uniforme (High-Key)</span></li>
+                    <li className="flex items-start gap-2"><span>•</span> <span>Fundo neutro e ambiente clínico profissional</span></li>
+                    <li className="flex items-start gap-2"><span>•</span> <span>Expressão serena, postura confiante e empática</span></li>
+                    <li className="flex items-start gap-2"><span>•</span> <span>Vestimenta médica impecável</span></li>
+                  </ul>
                 </div>
+                <p className="text-xs text-slate-400 italic">Esses elementos asseguram uma comunicação visual alinhada aos valores da marca.</p>
               </div>
-              <div className="relative group">
-                 <input type="file" id="photoIn" accept="image/*" className="hidden" onChange={handlePhotoUpload} />
-                 <label htmlFor="photoIn" className="photo-upload-area shadow-lg cursor-pointer block group overflow-hidden">
-                    <img src={photoUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Specialist" />
-                    <div className="absolute inset-0 bg-brand-blue/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center text-white transition-opacity">
-                       <span className="text-3xl mb-2">📷</span>
-                       <span className="font-bold uppercase text-xs tracking-widest">Atualizar Retrato</span>
-                    </div>
-                 </label>
+              <div className="flex justify-center w-full">
+                 <div className="relative group">
+                    <input type="file" id="photoIn" accept="image/*" className="hidden" onChange={handlePhotoUpload} />
+                    <label htmlFor="photoIn" className="photo-upload-area shadow-2xl cursor-pointer block group overflow-hidden border-none rounded-[3rem]">
+                        <img 
+                          src={photoUrl} 
+                          className="w-full h-auto group-hover:scale-105 transition-transform duration-1000" 
+                          alt="Specialist" 
+                        />
+                        <div className="absolute inset-0 bg-brand-blue/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center text-white transition-opacity duration-500">
+                           <div className="bg-white/20 p-6 rounded-full backdrop-blur-md mb-4 animate-pulse-soft">
+                             <span className="text-4xl">📸</span>
+                           </div>
+                           <span className="font-bold uppercase text-sm tracking-[0.3em]">Atualizar Retrato Oficial</span>
+                        </div>
+                    </label>
+                 </div>
               </div>
            </div>
         </section>
 
         {/* Footer */}
         <footer className="text-center py-20 bg-white rounded-[3rem] shadow-2xl border border-gray-100">
-          <div className="mb-8 opacity-40 hover:opacity-100 transition-opacity">
-            <img src={logoUrl} className="w-24 h-24 mx-auto object-contain" alt="Footer Logo" />
+          <div className="mb-8 opacity-40 hover:opacity-100 transition-all duration-500 hover:scale-110 cursor-pointer">
+            <img src={logoUrl} className="w-32 h-32 mx-auto object-contain" alt="Footer Logo" />
           </div>
-          <p className="font-serif text-3xl font-bold text-brand-blue mb-2">Dr. Antônio Falcão</p>
-          <p className="text-brand-red font-bold text-[10px] uppercase tracking-[0.4em]">Saúde Cardiovascular de Excelência</p>
-          <div className="mt-16 pt-8 border-t border-gray-50 text-[10px] text-slate-300 font-bold tracking-widest px-6">
-            © 2026 DR. ANTÔNIO FALCÃO • TODOS OS DIREITOS RESERVADOS • MANUAL DE MARCA v1.0
+          <p className="font-serif text-4xl font-bold text-brand-blue mb-2">Dr. Antônio Falcão</p>
+          <p className="text-brand-red font-bold text-xs uppercase tracking-[0.5em]">Saúde Cardiovascular de Excelência</p>
+          <div className="mt-20 pt-10 border-t border-gray-50 text-[11px] text-slate-300 font-bold tracking-[0.4em] px-6">
+            © 2026 DR. ANTÔNIO FALCÃO • TODOS OS DIREITOS RESERVADOS • MANUAL DE MARCA v1.2
           </div>
         </footer>
       </main>
@@ -211,9 +264,9 @@ const App: React.FC = () => {
       <div className="fixed bottom-8 right-8 z-50">
         <button 
           onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-          className="w-12 h-12 bg-white shadow-xl rounded-full flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-all border border-gray-100"
+          className="w-16 h-16 bg-brand-blue text-white shadow-2xl rounded-full flex items-center justify-center hover:bg-brand-red hover:scale-110 transition-all duration-300"
         >
-          ↑
+          <span className="text-2xl">↑</span>
         </button>
       </div>
     </div>

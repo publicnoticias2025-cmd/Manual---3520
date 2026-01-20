@@ -42,8 +42,10 @@
         font-family: 'Playfair Display', serif;
       }
       .logo-display-area {
-        width: 420px; /* Aumentado de 320px */
-        height: 420px; /* Aumentado de 320px */
+        width: 420px;
+        height: 420px;
+        max-width: 90vw;
+        max-height: 90vw;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -59,14 +61,20 @@
         }
       }
       .photo-upload-area {
-        width: 100%;
-        height: 450px;
+        display: inline-block;
+        max-width: 100%;
         border-radius: 2rem;
         overflow: hidden;
         background: #f8fafc;
         border: 2px dashed #808285;
         transition: all 0.3s ease;
         position: relative;
+        line-height: 0; /* Remove espaços extras abaixo da imagem */
+      }
+      .photo-upload-area img {
+        display: block;
+        max-width: 100%;
+        height: auto;
       }
       @keyframes pulse-soft {
         0%, 100% { transform: scale(1); }
