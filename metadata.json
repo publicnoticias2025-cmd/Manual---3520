@@ -1,7 +1,5 @@
 {
   "name": "Dr. Antônio Falcão - Manual de Marca Inteligente",
   "description": "Manual de marca estratégico e interativo com assistente de IA para geração de conteúdo alinhado ao arquétipo do médico.",
-  "requestFramePermissions": [
-    "camera"
-  ]
+  "requestFramePermissions": []
 }
