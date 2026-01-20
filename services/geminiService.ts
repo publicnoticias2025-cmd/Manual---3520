@@ -12,7 +12,8 @@ Diretrizes da Marca:
 `;
 
 export const generateBrandContent = async (topic: string) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Ensure the AI client uses process.env.API_KEY directly
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const prompt = `
     Com base no contexto da marca Dr. Antônio Falcão: ${BRAND_CONTEXT}
@@ -31,6 +32,9 @@ export const generateBrandContent = async (topic: string) => {
     return response.text;
   } catch (error) {
     console.error("Erro ao gerar conteúdo:", error);
+    if (error instanceof Error && error.message.includes("Requested entity was not found")) {
+      return "Erro: Chave de API não encontrada ou inválida. Verifique as configurações de ambiente do Netlify.";
+    }
     return "Houve um erro ao consultar a inteligência da marca.";
   }
 };

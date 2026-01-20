@@ -5,8 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dr. Antônio Falcão - Manual de Marca Estratégico</title>
+    <!-- Babel standalone for JSX/TSX support -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
@@ -78,5 +83,6 @@
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased">
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
   </body>
 </html>
