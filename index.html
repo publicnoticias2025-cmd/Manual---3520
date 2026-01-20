@@ -42,15 +42,21 @@
         font-family: 'Playfair Display', serif;
       }
       .logo-display-area {
-        width: 320px;
-        height: 320px;
+        width: 420px; /* Aumentado de 320px */
+        height: 420px; /* Aumentado de 320px */
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 2rem;
+        border-radius: 2.5rem;
         background: #ffffff;
         border: 2px dashed #1A2B44;
         transition: all 0.4s ease;
+      }
+      @media (max-width: 640px) {
+        .logo-display-area {
+          width: 280px;
+          height: 280px;
+        }
       }
       .photo-upload-area {
         width: 100%;

@@ -1,16 +1,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { generateBrandContent } from './services/geminiService';
 
 const App: React.FC = () => {
   const [logoUrl, setLogoUrl] = useState('https://lh3.googleusercontent.com/d/1p0Cp9i1nKWc3Pil8GaYrcQJkuFfqZPPy');
   const [photoUrl, setPhotoUrl] = useState('https://lh3.googleusercontent.com/d/1w7HIwm3Y577ZdiiNj2Mv_La-9Yo5pso8');
-  const [aiTopic, setAiTopic] = useState('');
-  const [aiResponse, setAiResponse] = useState('');
-  const [isGenerating, setIsGenerating] = useState(false);
 
   const personalityChartRef = useRef<HTMLCanvasElement>(null);
-  const toneChartRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (personalityChartRef.current) {
@@ -39,30 +34,6 @@ const App: React.FC = () => {
         });
       }
     }
-
-    if (toneChartRef.current) {
-      const ctx = toneChartRef.current.getContext('2d');
-      if (ctx) {
-        new (window as any).Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Didático', 'Empático', 'Seguro', 'Inspiracional', 'Claro'],
-            datasets: [{
-              data: [95, 90, 100, 85, 92],
-              backgroundColor: ['#C61F26', '#1A2B44', '#C61F26', '#1A2B44', '#C61F26'],
-              borderRadius: 8,
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            indexAxis: 'y',
-            scales: { x: { display: false, max: 100 }, y: { grid: { display: false }, ticks: { color: '#ffffff', font: { weight: 'bold' } } } },
-            plugins: { legend: { display: false } }
-          }
-        });
-      }
-    }
   }, []);
 
   const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,14 +50,6 @@ const App: React.FC = () => {
     }
   };
 
-  const handleAskAI = async () => {
-    if (!aiTopic) return;
-    setIsGenerating(true);
-    const content = await generateBrandContent(aiTopic);
-    setAiResponse(content || '');
-    setIsGenerating(false);
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 overflow-x-hidden">
       {/* Hero Header */}
@@ -95,7 +58,7 @@ const App: React.FC = () => {
           <div className="mb-12 relative group cursor-pointer">
             <input type="file" id="logoIn" accept="image/*" className="hidden" onChange={handleLogoUpload} />
             <label htmlFor="logoIn" className="logo-display-area shadow-2xl hover:border-brand-red transition-all overflow-hidden group">
-              <img src={logoUrl} className="max-w-[85%] max-h-[85%] object-contain" alt="Logo" />
+              <img src={logoUrl} className="max-w-[95%] max-h-[95%] object-contain scale-110" alt="Logo" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-bold uppercase transition-opacity">Alterar Logo</div>
             </label>
           </div>
@@ -189,14 +152,14 @@ const App: React.FC = () => {
 
           <div className="lg:col-span-2 bg-white p-10 rounded-[2rem] shadow-xl border border-gray-100 overflow-hidden">
             <h2 className="font-serif text-2xl font-bold text-brand-blue mb-8">Aplicações Reais</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[320px]">
-              <div className="bg-slate-50 rounded-2xl flex flex-col items-center justify-center p-6 group cursor-pointer relative">
-                <img src={logoUrl} className="max-w-[80%] max-h-[140px] object-contain transition group-hover:scale-105" alt="Light logo" />
-                <span className="absolute bottom-4 text-[10px] font-bold uppercase text-slate-300">Fundo Claro</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[400px]"> {/* Aumentado de 320px para 400px */}
+              <div className="bg-slate-50 rounded-2xl flex flex-col items-center justify-center p-8 group cursor-pointer relative shadow-sm">
+                <img src={logoUrl} className="max-w-[90%] max-h-[180px] object-contain transition group-hover:scale-105" alt="Light logo" />
+                <span className="absolute bottom-4 text-[10px] font-bold uppercase text-slate-300 tracking-widest">Fundo Claro</span>
               </div>
-              <div className="bg-brand-blue rounded-2xl flex flex-col items-center justify-center p-6 group cursor-pointer relative shadow-inner">
-                <img src={logoUrl} className="max-w-[80%] max-h-[140px] object-contain brightness-0 invert transition group-hover:scale-105" alt="Dark logo" />
-                <span className="absolute bottom-4 text-[10px] font-bold uppercase text-blue-300">Fundo Escuro</span>
+              <div className="bg-brand-blue rounded-2xl flex flex-col items-center justify-center p-8 group cursor-pointer relative shadow-inner">
+                <img src={logoUrl} className="max-w-[90%] max-h-[180px] object-contain brightness-0 invert transition group-hover:scale-105" alt="Dark logo" />
+                <span className="absolute bottom-4 text-[10px] font-bold uppercase text-blue-300 tracking-widest">Fundo Escuro</span>
               </div>
             </div>
             <div className="mt-8 text-xs text-slate-400 italic">
@@ -205,59 +168,11 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Section 3: AI Brand Assistant */}
-        <section className="bg-brand-blue rounded-[3rem] p-12 md:p-20 text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div className="space-y-6">
-              <h2 className="font-serif text-4xl font-bold">Assistente de Marca IA</h2>
-              <p className="text-blue-200 text-lg font-light leading-relaxed">
-                Gere conteúdo para redes sociais, artigos ou avisos que seguem exatamente o tom de voz "Sábio e Protetor" do Dr. Antônio.
-              </p>
-              <div className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Ex: Importância do check-up anual..."
-                  className="w-full bg-white/10 border border-white/20 rounded-2xl p-4 text-white placeholder-blue-300 focus:ring-2 focus:ring-brand-red outline-none"
-                  value={aiTopic}
-                  onChange={(e) => setAiTopic(e.target.value)}
-                />
-                <button
-                  onClick={handleAskAI}
-                  disabled={isGenerating || !aiTopic}
-                  className="w-full bg-brand-red hover:bg-red-700 disabled:bg-slate-600 text-white font-bold py-4 rounded-2xl transition-all shadow-lg flex items-center justify-center gap-3"
-                >
-                  {isGenerating ? 'Processando Estratégia...' : 'Gerar Conteúdo Estratégico'}
-                  {!isGenerating && <span className="text-xl">✨</span>}
-                </button>
-              </div>
-            </div>
-            <div className="bg-white rounded-3xl p-8 h-[450px] overflow-y-auto shadow-2xl">
-              {aiResponse ? (
-                <div className="text-slate-800 space-y-4 whitespace-pre-line text-sm leading-relaxed">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white text-[10px] font-bold">AI</div>
-                    <span className="font-bold text-brand-blue uppercase text-xs tracking-widest">Sugestão Estratégica</span>
-                  </div>
-                  {aiResponse}
-                </div>
-              ) : (
-                <div className="h-full flex flex-col items-center justify-center text-slate-300 text-center p-6">
-                  <div className="w-20 h-20 border-4 border-dashed border-slate-200 rounded-full flex items-center justify-center mb-4 opacity-50">
-                    <span className="text-4xl">💡</span>
-                  </div>
-                  <p className="font-medium text-slate-400">Insira um tema e deixe a IA pensar como o Dr. Antônio Falcão.</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Section 4: Photo Styling */}
+        {/* Section 3: Photo Styling */}
         <section className="bg-white rounded-[2.5rem] shadow-xl p-10 md:p-16 border border-gray-100">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
-                <h2 className="font-serif text-3xl font-bold text-brand-blue">O Rosto da Marca</h2>
+                <h2 className="font-serif text-3xl font-bold text-brand-blue">3. O Rosto da Marca</h2>
                 <p className="text-slate-600 leading-relaxed">
                   A fotografia deve seguir o estilo <strong>High-Key</strong>: iluminação clara, fundo limpo e tons suaves, transmitindo transparência e autoridade.
                 </p>
@@ -292,7 +207,7 @@ const App: React.FC = () => {
         </footer>
       </main>
 
-      {/* Deploy Helper Button */}
+      {/* Scroll Top Helper Button */}
       <div className="fixed bottom-8 right-8 z-50">
         <button 
           onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
