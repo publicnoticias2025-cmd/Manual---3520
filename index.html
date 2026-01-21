@@ -3,7 +3,7 @@
 <html lang="pt-PT">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Dr. Antônio Falcão - Manual de Marca Estratégico</title>
     <!-- Babel standalone for JSX/TSX support -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -36,52 +36,34 @@
     <style>
       body {
         font-family: 'Montserrat', sans-serif;
-        scroll-behavior: smooth;
+        overflow: hidden;
       }
       .font-serif {
         font-family: 'Playfair Display', serif;
       }
       .logo-display-area {
-        width: 420px;
-        height: 420px;
-        max-width: 90vw;
-        max-height: 90vw;
+        width: 100%;
+        max-width: 450px;
+        aspect-ratio: 1 / 1;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 2.5rem;
         background: #ffffff;
-        border: 2px dashed #1A2B44;
-        transition: all 0.4s ease;
-      }
-      @media (max-width: 640px) {
-        .logo-display-area {
-          width: 280px;
-          height: 280px;
-        }
+        border: 2px dashed #e2e8f0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 0 auto;
       }
       .photo-upload-area {
-        display: inline-block;
-        max-width: 100%;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
         border-radius: 2rem;
         overflow: hidden;
         background: #f8fafc;
-        border: 2px dashed #808285;
+        border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
         position: relative;
-        line-height: 0; /* Remove espaços extras abaixo da imagem */
-      }
-      .photo-upload-area img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-      @keyframes pulse-soft {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-      }
-      .animate-pulse-soft {
-        animation: pulse-soft 3s infinite ease-in-out;
       }
     </style>
     <script type="importmap">
@@ -90,12 +72,13 @@
         "react": "https://esm.sh/react@^19.2.3",
         "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
         "react/": "https://esm.sh/react@^19.2.3/",
-        "@google/genai": "https://esm.sh/@google/genai@^1.37.0"
+        "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+        "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.7"
       }
     }
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-800 antialiased">
+  <body class="bg-brand-light text-slate-800 antialiased">
     <div id="root"></div>
     <script type="module" src="index.tsx"></script>
   </body>
